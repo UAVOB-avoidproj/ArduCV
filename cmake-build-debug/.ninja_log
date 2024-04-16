@@ -1,0 +1,8 @@
+# ninja log v5
+24	1065	7349664380742050	CMakeFiles/ArduCV.dir/Tools/Tools.cpp.obj	d2508f14fb0c8462
+32	4125	7349664411323069	CMakeFiles/ArduCV.dir/Param/CameraParam.cpp.obj	f6c9548b1250b120
+16	4504	7349664414555241	CMakeFiles/ArduCV.dir/Calibration/Calibration.cpp.obj	a1f16b67d70599e
+6	4978	7349664419786474	CMakeFiles/ArduCV.dir/main.cpp.obj	497d6992448c6d7b
+1066	6041	7349664430450146	CMakeFiles/ArduCV.dir/Param/Settings.cpp.obj	4b2286ada33e80ba
+4129	7608	7349664446160053	CMakeFiles/ArduCV.dir/Reconstruction/Reconstruction.cpp.obj	6fb626858a22cd22
+7609	9068	7349664450431119	ArduCV.exe	f712830426b8ea3b
