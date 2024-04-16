@@ -37,6 +37,9 @@ else ()
     message("Boost not found, make sure your version is 1.84.0")
 endif ()
 
+message("Loading mavlink")
+include_directories(3rdParty/mavlink_header)
+
 add_executable(${PROJECT_NAME} main.cpp
         calibration/Calibration.cpp
         calibration/Calibration.h
@@ -49,6 +52,10 @@ add_executable(${PROJECT_NAME} main.cpp
         param/Settings.h
         reconstruction/Reconstruction.cpp
         reconstruction/Reconstruction.h
+        Reconstruction/DistanceDetection.cpp
+        Reconstruction/DistanceDetection.h
+        Reconstruction/StereoRectify.cpp
+        Reconstruction/StereoRectify.h
 )
 
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES})
