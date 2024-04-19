@@ -44,8 +44,8 @@ namespace ArduCV {
         capture.open(cameraDeviceNo, cv::CAP_V4L2);
 #endif
         // Camera trim
-        capture.set(cv::CAP_PROP_FRAME_WIDTH, 3840);
-        capture.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
+        capture.set(cv::CAP_PROP_FRAME_WIDTH, static_cast<int>(setting["CameraResolutionWidth"].as_int64()));
+        capture.set(cv::CAP_PROP_FRAME_HEIGHT, static_cast<int>(setting["CameraResolutionHeight"].as_int64()));
         capture.set(cv::CAP_PROP_FPS, static_cast<int>(setting["FPS"].as_int64()));
         capture.set(cv::CAP_PROP_FOURCC, cv::CAP_OPENCV_MJPEG);
         cv::namedWindow("left", cv::WINDOW_GUI_NORMAL);

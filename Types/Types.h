@@ -32,9 +32,38 @@ namespace ArduCV{
     typedef cv::Mat Emat;
     typedef cv::Mat Fmat;
 
+    typedef cv::Rect Roi;
+    typedef cv::Mat Map;
+
     typedef std::vector<cv::Point2f> Corners;
     typedef std::vector<std::vector<cv::Point3f>> ObjectPoints;
     typedef	std::vector<std::vector<cv::Point2f>> ImagePoints;
+
+    /**
+     * @brief Recommended Flight Path Vector
+     */
+    struct RecVec{
+        double Xdirection;
+        double Ydirection;
+        double Angle;
+    };
+    /**
+     * @brief The data frame that subscriber will receive
+     */
+    struct DistanceDataFrame {
+        // epoch time
+        std::chrono::duration<long long, std::ratio<1, 1000000>> epoch;
+        // the distance matrix [row][col]
+        std::vector<std::vector<double>> matrix;
+        // the percentage which inside thres [row][col]
+        std::vector<std::vector<double>> nearPercentage;
+        // recommend forward vector
+        RecVec recommendVector;
+        // duration in microsecond
+        long long duration;
+        // respond speed
+        double fps;
+    };
 }
 
 

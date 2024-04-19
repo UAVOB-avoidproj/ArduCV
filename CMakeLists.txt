@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
 # Note: Vcpkg should be off on Linux
-
 option(USE_VCPKG "Use Vcpkg" ON)
 if (USE_VCPKG)
     set(VCPKG_ROOT "D:/AppData/vcpkg")
@@ -19,6 +18,7 @@ project(ArduCV)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# OpenCV
 message("Finding OpenCV")
 find_package(OpenCV 4.8.0 CONFIG REQUIRED)
 if (OpenCV_FOUND)
@@ -28,8 +28,9 @@ else ()
     message("OpenCV not found, make sure your version newer than 4.8.0")
 endif ()
 
+# Boost
 message("Finding Boost")
-find_package(Boost 1.84.0 COMPONENTS json)
+find_package(Boost 1.84.0 REQUIRED COMPONENTS json)
 if (Boost_FOUND)
     message("Boost founded")
     message("Boost libs: ${Boost_LIBRARIES}")
@@ -37,6 +38,17 @@ else ()
     message("Boost not found, make sure your version is 1.84.0")
 endif ()
 
+# Intel TBB
+message("Finding Intel TBB")
+find_package(TBB 2021.11.0 CONFIG REQUIRED)
+if (TBB_FOUND)
+    message("TBB founded")
+    message("TBB libs: ${TBB_LIBS}")
+else ()
+    message("TBB not found, make sure your version is 2021.11.0")
+endif ()
+
+# MavLink
 message("Loading mavlink")
 include_directories(3rdParty/mavlink_header)
 
@@ -56,6 +68,10 @@ add_executable(${PROJECT_NAME} main.cpp
         Reconstruction/DistanceDetection.h
         Reconstruction/StereoRectify.cpp
         Reconstruction/StereoRectify.h
+        Reconstruction/StereoBM.cpp
+        Reconstruction/StereoBM.h
+        Reconstruction/AsyncDistanceDetection.cpp
+        Reconstruction/AsyncDistanceDetection.h
 )
 
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${OpenCV_LIBS} ${Boost_LIBRARIES} TBB::tbb)

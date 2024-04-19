@@ -1,0 +1,11 @@
+prefix=D:/a/MAVSDK/MAVSDK/build/release/install
+exec_prefix=D:/a/MAVSDK/MAVSDK/build/release/install/bin
+libdir=D:/a/MAVSDK/MAVSDK/build/release/install/lib
+includedir=D:/a/MAVSDK/MAVSDK/build/release/install/include
+
+Name: MAVSDK
+Description: API and library for MAVLink compatible systems written in C++17
+Version: 2.9.1
+Requires.private: libcurl jsoncpp tinyxml2
+Libs: -L"${libdir}" -lmavsdk
+Cflags: -I"${includedir}" -I"${includedir}/mavsdk"
